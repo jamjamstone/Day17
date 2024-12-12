@@ -146,7 +146,7 @@
         }
 
     }*/
-
+    /*
     abstract class Character// 추상화 클래스 ->불완전한 클래스가 되었음
     {
         protected string _name;
@@ -185,7 +185,65 @@
             Console.WriteLine("구른다");
         }
 
+    }*/
+    //일반화 프로그래밍 
+    class Milk
+    {
+        public string ExpiredData;
+        public Milk()
+        {
+            
+        }
+        public Milk(string expiredData) 
+        {
+            ExpiredData = expiredData;
+        }
     }
+
+    class Coffee
+    {
+        public string CoffeeType;
+    }
+
+    class Water
+    {
+        public string WaterName;
+    }
+    class PaperClip
+    {
+        public string Material;
+    }
+    class Cup<T,U>
+        where T : class,new()
+        where U :struct
+        // T자리에 class만 들어가게 제약, T에는 인자값을 요구하지 않는 생성자만 사용가능
+        // T자리에 Milk대입시=> T자리에 다른 변수명이 사용되도 되지만 암묵적 규칙
+    {
+        T _contents= new T();//T가 포함된 모든 위치가 변환됨
+        U _fillAmount;
+        public T GetContents()
+        {
+            return _contents;
+        }
+        public void SetFillAmount(U amount)
+        {
+            _fillAmount = amount;   
+        }
+
+
+    }
+    //class CoffeeCup
+    //{
+    //    Coffee _contents;
+    //    float _fillAmount;
+    //    public Coffee GetContents()
+    //    {
+    //        return _contents;
+    //    }
+    //}
+    //제네릭 하나의 클래스가 다양한 ㅏ료형을 처리할 수 있게 됨
+
+
 
     internal class Program
     {
@@ -197,6 +255,19 @@
          * 추상 클래스 -> 세부적인 구현은 자식클래스가 하도록 위임하고 본인은 최소한의 
          * 기능만을 가지고 있는 클래스
          * 
+         * where 제약문 
+         * 제약을 걸 때 사용
+         * 
+         * 박싱 언박싱 
+         * 포장 하다 포장을 뜯다.
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
          */
 
 
@@ -204,7 +275,42 @@
 
         static void Main(string[] args)//메인이 스태틱이기 때문에 외부 변수는 스태틱이어야 함
         {
+            int myInt = 23;
+            Random rand = new Random();
+            float myFloat = 23.4343f;
+            object oInt = myInt;//오브젝트엔 모두 담을 수 있다. 클래스이기 때문에 참조형
+            object oFloat = myFloat;//실행시 힙공간에 데이터를 기억할 수 있는 공간이 생김, 거기에 우항을 복사해서 기억
+            object oRandom = rand;// 값타입을 포장해서 힙공간으로 날려보내는걸 박싱이라고 한다.
+            // 박싱은 여러 과정을 거치기 때문에 렉이 걸림
+            //오브젝트 형 안에 존재하는 데이터를 꺼내기 위해서는 명시적 형변환을 이용해서 꺼내야 함
+            // 당연하게도 명시적 형변환을 실행할 때 다른 자료형으로 형변환을 시도하면 에러가 발생
+            //언박싱 과정은 렉도 걸리고 에러의 위험도 커서 사용에 주의를 요함
+            //오브젝트 형으로 다양한 형을 다루면 성능 저하를 유발할 수 있고 위험하다.
+            //수많은 다양한 형을 ㅏ루기 위해서는 좀 더 안전한 제네릭을 사용하는 것이 좋다.
+            //제네릭은 들어오는 타입에 제약도 걸 수 있고 안정성도 보장된다.
+            var myVar = 2341;//담겨있는 데이터를 보고 추론해서 데이터 형식 지정
+            var sdfs = "sdfsf";
+            
 
+
+
+
+
+
+            //Cup milkCup = new Cup();// 에러 발생 제네릭 형식 사용하기 위해서는 
+           // Cup<Milk,int> milkCup = new Cup<Milk,int>(); 이처럼 지정해야 함
+           // //
+           //
+           // Cup<Water,float> waterCup = new Cup<Water,float>();
+           //
+           // milkCup.GetContents().ExpiredData = "sdfasdf";
+
+
+
+
+
+
+            /*
             Character hunter = new Hunter();// 다형성은 추상클래스에도 사용가능 
             Mage mage = new Mage();
 
@@ -233,13 +339,19 @@
             {
                 character.BaseAttack();
             }
-
+            Character[] myParty = new Character[100];
+            myParty[2] = new Mage();
+            myParty[3] = new Hunter();
+            foreach(var character in myParty)
+            {
+                character?.BaseAttack();//character가 null이 아니라면 baseattack 실행
+            }
 
             //as 의경우 무엇으로 변경하시오
             //? 키워드 -> null이 가능한 형에 ?를 붙이면 만약 null일 경우 
             //뒤에 오는 모든 코드를 재낀다. -> null 조건부 연산자
 
-
+            */
 
 
 
