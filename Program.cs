@@ -377,7 +377,7 @@
             //garage[1] = truck;
             //garage[2] = car;
             //오버라이드 상속관계에서 부모클래스의 메소드를 자식클래스가 재정의 해서 사용
-            //또는 덮어씌우고 본인만의 기능르 새로만드는 것을 보고 오버라이딩이라고 부름
+            //또는 덮어씌우고 본인만의 기능을 새로만드는 것을 보고 오버라이딩이라고 부름
             //Car bulldoser = new Bulldoser();
             //Car truck = new Truck();
             //Sedan  sedan = new Sedan();
